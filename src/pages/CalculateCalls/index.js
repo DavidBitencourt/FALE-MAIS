@@ -78,8 +78,9 @@ function CalculateCalls() {
   return (
     <ContainerStyled>
       <Modal
-        openModal={openModal}
-        setOpenModal={(status) => setOpenModal(status)}
+        visibility={openModal}
+        modalHandler={(status) => setOpenModal(status)}
+        data={data}
       />
       <HeaderStyled>
         <Link to="/">

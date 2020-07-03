@@ -1,77 +1,90 @@
-import Backdrop from "@material-ui/core/Backdrop";
-import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import React from "react";
-import { animated, useSpring } from "react-spring/";
+import React, { useEffect, useState } from "react";
+import { MdClose } from "react-icons/md";
+import {
+  CardBoxStyled,
+  ContainerStyled,
+  Header,
+  InfoTextStyled,
+  ModalContent,
+  OverflowStyled,
+  TableColumnStyled,
+  TableHeaderStyled,
+  TableRowStyled,
+  TableStyled,
+  Title,
+} from "./styles";
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+function Modal({ visibility, modalHandler, data }) {
+  const [show, setShow] = useState(visibility);
 
-const Fade = React.forwardRef(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter();
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited();
-      }
-    },
-  });
+  useEffect(() => {
+    setShow(visibility);
+  }, [visibility]);
+
+  const closeModal = () => {
+    setShow(false);
+    modalHandler(false);
+  };
 
   return (
-    <animated.div ref={ref} style={style} {...other}>
-      {children}
-    </animated.div>
-  );
-});
-
-Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
-  onEnter: PropTypes.func,
-  onExited: PropTypes.func,
-};
-
-export default function SpringModal({ openModal, setOpenModal }) {
-  const classes = useStyles();
-
-  return (
-    <Modal
-      aria-labelledby="spring-modal-title"
-      aria-describedby="spring-modal-description"
-      className={classes.modal}
-      open={openModal}
-      onClose={() => setOpenModal(false)}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Fade in={openModal}>
-        <div className={classes.paper}>
-          <h2 id="spring-modal-title">Spring modal</h2>
-          <p id="spring-modal-description">react-spring animates me.</p>
-        </div>
-      </Fade>
-    </Modal>
+    <ContainerStyled visibility={show}>
+      <OverflowStyled
+        onClick={() => {
+          closeModal();
+        }}
+      />
+      <CardBoxStyled>
+        <Header>
+          <Title>tabela de tarifas</Title>
+          <MdClose
+            onClick={() => closeModal()}
+            style={{ fontSize: 25, color: "#4f4f4f" }}
+          />
+        </Header>
+        <ModalContent>
+          <TableStyled>
+            <TableRowStyled>
+              <TableHeaderStyled>ddd (origem)</TableHeaderStyled>
+              <TableHeaderStyled>ddd (destino)</TableHeaderStyled>
+              <TableHeaderStyled>$/min</TableHeaderStyled>
+              <TableHeaderStyled>$/min com 10% ***</TableHeaderStyled>
+            </TableRowStyled>
+            {data.map((item) => (
+              <TableRowStyled key={item.id} className="row-table">
+                <TableColumnStyled>{item.origin}</TableColumnStyled>
+                <TableColumnStyled>{item.destination}</TableColumnStyled>
+                <TableColumnStyled>
+                  {item.minute.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </TableColumnStyled>
+                <TableColumnStyled>
+                  {((item.minute * 10) / 100 + item.minute).toLocaleString(
+                    "pt-br",
+                    {
+                      style: "currency",
+                      currency: "BRL",
+                    }
+                  )}
+                </TableColumnStyled>
+              </TableRowStyled>
+            ))}
+          </TableStyled>
+          <InfoTextStyled>
+            *** Ao ultrapassar o limite de qualquer plano faleMais uma taxa de
+            10% do $/min será cobrado.
+          </InfoTextStyled>
+        </ModalContent>
+      </CardBoxStyled>
+    </ContainerStyled>
   );
 }
+
+Modal.propTypes = {
+  visibility: PropTypes.bool.isRequired,
+  modalHandler: PropTypes.func.isRequired,
+};
+
+export default Modal;
