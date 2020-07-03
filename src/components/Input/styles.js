@@ -13,7 +13,7 @@ export const CssTextField = withStyles({
     marginBottom: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#FAFAFA",
     borderRadius: `6px`,
     fontWeight: "bold",
     fontSize: "2vh",
@@ -31,7 +31,6 @@ export const CssTextField = withStyles({
     },
     "& .MuiOutlinedInput-root": {
       height: "100%",
-      // fontSize: ({ small }) => (small ? '1.8vh' : '2vh'),
       "& fieldset": {
         borderColor: "transparent",
         boxShadow: "inset 2px 2px 2px rgba(0, 0, 0, 0.08)",
@@ -63,7 +62,7 @@ export const CssTextField = withStyles({
     },
     "& label.MuiInputLabel-shrink": {
       transform: "translate(0px, -35px) scale(1)",
-      color: "#f3f3f3",
+      color: "#4f4f4f",
     },
     "& legend": {
       width: "0px !important",

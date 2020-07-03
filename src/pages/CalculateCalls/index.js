@@ -4,8 +4,20 @@ import { MdInfo } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
+import Modal from "../../components/Modal";
 import data from "../../utils/data.json";
-import "./styles.css";
+import {
+  CalculateStyled,
+  ContainerStyled,
+  GroupInputStyled,
+  GroupResultStyled,
+  HeaderStyled,
+  InfoStyled,
+  MainStyled,
+  ResultLabelStyled,
+  ResultStyled,
+} from "./styles";
+
 function CalculateCalls() {
   const [plans, setPlans] = useState([
     {
@@ -35,7 +47,8 @@ function CalculateCalls() {
   const [withPlan, setWithPlan] = useState(0);
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
-  
+  const [openModal, setOpenModal] = useState(false);
+
   useEffect(() => {
     if (origin && destination && plan && callTime) {
       let { minute } = data.find(
@@ -63,16 +76,20 @@ function CalculateCalls() {
   }, [withPlan, withoutPlan]);
 
   return (
-    <div className="container">
-      <header>
+    <ContainerStyled>
+      <Modal
+        openModal={openModal}
+        setOpenModal={(status) => setOpenModal(status)}
+      />
+      <HeaderStyled>
         <Link to="/">
           <IoMdArrowRoundBack />
           voltar para a home
         </Link>
-      </header>
-      <main>
-        <div className="calculate">
-          <div className="group-select">
+      </HeaderStyled>
+      <MainStyled>
+        <CalculateStyled>
+          <GroupInputStyled>
             <InputSelect
               width={45}
               label="origem (ddd)"
@@ -99,8 +116,8 @@ function CalculateCalls() {
               }}
               changeValue={destination}
             />
-          </div>
-          <div className="group-select">
+          </GroupInputStyled>
+          <GroupInputStyled>
             <InputSelect
               width={45}
               label="plano faleMais"
@@ -119,30 +136,30 @@ function CalculateCalls() {
               }}
               mask="99999999999"
             />
-          </div>
-        </div>
-        <div className="group-result">
-          <div className="result">
-            <label>com plano:</label>
-            <label>
+          </GroupInputStyled>
+        </CalculateStyled>
+        <GroupResultStyled>
+          <ResultStyled>
+            <ResultLabelStyled>com plano:</ResultLabelStyled>
+            <ResultLabelStyled>
               {withPlan.toLocaleString("pt-br", {
                 style: "currency",
                 currency: "BRL",
               })}
-            </label>
-          </div>
-          <div className="result">
-            <label>sem plano:</label>
-            <label>
+            </ResultLabelStyled>
+          </ResultStyled>
+          <ResultStyled>
+            <ResultLabelStyled>sem plano:</ResultLabelStyled>
+            <ResultLabelStyled>
               {withoutPlan.toLocaleString("pt-br", {
                 style: "currency",
                 currency: "BRL",
               })}
-            </label>
-          </div>
-          <div className="result">
-            <label>resultado:</label>
-            <label>
+            </ResultLabelStyled>
+          </ResultStyled>
+          <ResultStyled>
+            <ResultLabelStyled>resultado:</ResultLabelStyled>
+            <ResultLabelStyled>
               {profit > 0
                 ? profit.toLocaleString("pt-br", {
                     style: "currency",
@@ -152,15 +169,18 @@ function CalculateCalls() {
                     style: "currency",
                     currency: "BRL",
                   })}
-            </label>
-          </div>
-        </div>
-        <div className="info">
-          <label>Consulte as tarifas fixas por minuto clicando no ícone</label>
-          <MdInfo />
-        </div>
-      </main>
-    </div>
+            </ResultLabelStyled>
+          </ResultStyled>
+        </GroupResultStyled>
+        <InfoStyled>
+          <label>consulte as tarifas fixas por minuto clicando no ícone</label>
+          <MdInfo
+            onClick={() => setOpenModal(true)}
+            style={{ fontSize: 25, cursor: "pointer" }}
+          />
+        </InfoStyled>
+      </MainStyled>
+    </ContainerStyled>
   );
 }
 

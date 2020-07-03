@@ -8,7 +8,7 @@ export const BoxSelectStyled = styled.div`
 `;
 
 export const SelectLabel = styled.label`
-  color: #f3f3f3;
+  color: #4f4f4f;
 `;
 
 export const CssSelect = withStyles({
@@ -57,7 +57,6 @@ export const CssMenuItem = withStyles({
       paddingRight: "10px",
     },
     "&.Mui-selected": {
-      backgroundColor: "transparent",
       color: "#4f4f4f",
     },
   },
