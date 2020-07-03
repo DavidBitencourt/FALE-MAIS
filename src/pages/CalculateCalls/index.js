@@ -35,6 +35,7 @@ function CalculateCalls() {
   const [withPlan, setWithPlan] = useState(0);
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
+  
   useEffect(() => {
     if (origin && destination && plan && callTime) {
       let { minute } = data.find(
@@ -55,7 +56,7 @@ function CalculateCalls() {
       setWithPlan(0);
       setWithoutPlan(0);
     }
-  }, [origin, destination, plan, callTime]);
+  }, [origin, destination, plan, callTime, plans]);
 
   useEffect(() => {
     setProfit(withoutPlan - withPlan);
