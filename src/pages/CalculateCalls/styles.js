@@ -27,7 +27,7 @@ export const MainStyled = styled.main`
   background-color: #ffffff;
   display: flex;
   width: 500px;
-  height: 600px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;

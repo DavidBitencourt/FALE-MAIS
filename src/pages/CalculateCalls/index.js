@@ -19,7 +19,7 @@ import {
 } from "./styles";
 
 function CalculateCalls() {
-  const [plans, setPlans] = useState([
+  const plans = [
     {
       label: "FaleMais 30",
       value: 30,
@@ -32,13 +32,13 @@ function CalculateCalls() {
       label: "FaleMais 120",
       value: 120,
     },
-  ]);
-  const [codes, setCodes] = useState([
+  ];
+  const codes = [
     { label: "011" },
     { label: "016" },
     { label: "017" },
     { label: "018" },
-  ]);
+  ];
 
   const [origin, setOrigin] = useState(codes[0].label);
   const [destination, setDestination] = useState(codes[1].label);
@@ -49,22 +49,47 @@ function CalculateCalls() {
   const [profit, setProfit] = useState(0);
   const [openModal, setOpenModal] = useState(false);
 
+  function getValuePerMinute() {
+    let { minute } = data.find(
+      (item) => item.origin === origin && item.destination === destination
+    );
+    return minute;
+  }
+
+  function calculateRate(minute) {
+    let minuteRate = (minute * 10) / 100 + minute;
+    return minuteRate;
+  }
+
+  function getLimitPlan() {
+    let valueCallTime = plans.find((item) => item.label === plan);
+    return valueCallTime;
+  }
+
+  function calculateWithPlan(callTime, valueCallTime, minuteRate) {
+    return callTime > valueCallTime.value
+      ? (callTime - valueCallTime.value) * minuteRate
+      : 0;
+  }
+
+  function calculateWithoutPlan(callTime, minute) {
+    return callTime * minute;
+  }
+
+  function calculateProfit(withoutPlan, withPlan) {
+    return withoutPlan - withPlan;
+  }
+
   useEffect(() => {
     if (origin && destination && plan && callTime) {
-      let { minute } = data.find(
-        (item) => item.origin === origin && item.destination === destination
-      );
+      let minute = getValuePerMinute();
 
-      let minuteRate = (minute * 10) / 100 + minute;
+      let minuteRate = calculateRate(minute);
 
-      let valueCallTime = plans.find((item) => item.label === plan);
+      let valueCallTime = getLimitPlan();
 
-      setWithPlan(
-        callTime > valueCallTime.value
-          ? (callTime - valueCallTime.value) * minuteRate
-          : 0
-      );
-      setWithoutPlan(callTime * minute);
+      setWithPlan(() => calculateWithPlan(callTime, valueCallTime, minuteRate));
+      setWithoutPlan(() => calculateWithoutPlan(callTime, minute));
     } else {
       setWithPlan(0);
       setWithoutPlan(0);
@@ -72,7 +97,7 @@ function CalculateCalls() {
   }, [origin, destination, plan, callTime, plans]);
 
   useEffect(() => {
-    setProfit(withoutPlan - withPlan);
+    setProfit(() => calculateProfit(withoutPlan, withPlan));
   }, [withPlan, withoutPlan]);
 
   return (
@@ -135,7 +160,7 @@ function CalculateCalls() {
               onChange={(value) => {
                 setCallTime(value.callTime);
               }}
-              mask="99999999999"
+              mask="999999999999"
             />
           </GroupInputStyled>
         </CalculateStyled>
