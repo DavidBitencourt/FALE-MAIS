@@ -17,6 +17,11 @@ body {
 
 body,
 input,
+label,
+table,
+tr,
+td,
+th,
 button {
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }

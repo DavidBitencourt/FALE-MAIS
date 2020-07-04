@@ -25,7 +25,7 @@ export const CssForm = withStyles({
   root: {
     backgroundColor: "#FAFAFA",
     borderRadius: "6px !important",
-    marginTop: "10%",
+    marginTop: "5%",
     textAlign: "left",
     width: "100%",
     height: "45px",

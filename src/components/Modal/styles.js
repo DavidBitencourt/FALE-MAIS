@@ -68,7 +68,7 @@ export const ModalContent = styled.div`
 `;
 
 export const TableStyled = styled.table`
-  width: 95%;
+  width: 85%;
   height: 70%;
   border-radius: 10px;
   border-collapse: collapse;
@@ -96,7 +96,7 @@ export const TableColumnStyled = styled.td`
 `;
 
 export const InfoTextStyled = styled.label`
-  width: 95%;
+  width: 85%;
   margin-top: 20px;
   font-size: 15px;
   color: #4f4f4f;

@@ -143,10 +143,12 @@ function CalculateCalls() {
           <ResultStyled>
             <ResultLabelStyled>com plano:</ResultLabelStyled>
             <ResultLabelStyled>
-              {withPlan.toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              })}
+              {withPlan === 0
+                ? "gratuito"
+                : withPlan.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
             </ResultLabelStyled>
           </ResultStyled>
           <ResultStyled>
@@ -159,17 +161,16 @@ function CalculateCalls() {
             </ResultLabelStyled>
           </ResultStyled>
           <ResultStyled>
-            <ResultLabelStyled>resultado:</ResultLabelStyled>
-            <ResultLabelStyled>
-              {profit > 0
-                ? profit.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
-                : profit.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
+            <ResultLabelStyled>custo-benefício:</ResultLabelStyled>
+            <ResultLabelStyled
+              color={
+                profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
+              }
+            >
+              {profit.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })}
             </ResultLabelStyled>
           </ResultStyled>
         </GroupResultStyled>

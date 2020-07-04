@@ -12,7 +12,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 18px;
+  font-size: 20px;
   a {
     color: #ffffff;
     font-weight: bold;
@@ -76,6 +76,7 @@ export const ResultStyled = styled.div`
 export const ResultLabelStyled = styled.label`
   color: #4f4f4f;
   font-size: 20px;
+  color: ${({ color }) => color};
 `;
 
 export const InfoStyled = styled.label`

@@ -15,9 +15,10 @@ export function Input({
   placeholder,
   maskPlaceholder,
 }) {
+  
   const handleChange = (event) => {
     onChange({
-      [name]: event.target.value,
+      [name]: event.target.value.replace(/[\D]+/g, ""),
     });
   };
 

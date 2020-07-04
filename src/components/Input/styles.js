@@ -5,7 +5,7 @@ export const BoxInputStyled = styled.div`
   width: ${({ width }) => width}%;
   height: 45px;
   margin: 10px;
-  margin-top: 35px;
+  margin-top: 5%;
 `;
 
 export const CssTextField = withStyles({
@@ -61,7 +61,7 @@ export const CssTextField = withStyles({
       transform: "translate(14px, 1.8vh) scale(1)",
     },
     "& label.MuiInputLabel-shrink": {
-      transform: "translate(0px, -35px) scale(1)",
+      transform: "translate(0px, -27px) scale(1)",
       color: "#4f4f4f",
     },
     "& legend": {
