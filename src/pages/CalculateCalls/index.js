@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdInfo } from "react-icons/md";
-import { Link } from "react-router-dom";
+import Lottie from "react-lottie";
+import phoneGirl from "../../assets/phoneGirl.json";
+import HeaderStyled from "../../components/Header";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
+import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
 import data from "../../utils/data.json";
 import {
+  AnimationBoxStyled,
   CalculateStyled,
   ContainerStyled,
   GroupInputStyled,
   GroupResultStyled,
-  HeaderStyled,
   InfoStyled,
   MainStyled,
   ResultLabelStyled,
@@ -19,6 +21,16 @@ import {
 } from "./styles";
 
 function CalculateCalls() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: phoneGirl,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const [loading, setLoading] = useState(true);
   const plans = [
     {
       label: "FaleMais 30",
@@ -48,6 +60,10 @@ function CalculateCalls() {
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2500);
 
   function getValuePerMinute() {
     let { minute } = data.find(
@@ -101,113 +117,122 @@ function CalculateCalls() {
   }, [withPlan, withoutPlan]);
 
   return (
-    <ContainerStyled>
-      <Modal
-        visibility={openModal}
-        modalHandler={(status) => setOpenModal(status)}
-        data={data}
-      />
-      <HeaderStyled>
-        <Link to="/">
-          <IoMdArrowRoundBack />
-          voltar para a home
-        </Link>
-      </HeaderStyled>
-      <MainStyled>
-        <CalculateStyled>
-          <GroupInputStyled>
-            <InputSelect
-              width={45}
-              label="origem (ddd)"
-              name="origin"
-              values={codes}
-              valueChange={(value) => {
-                value.origin !== "011"
-                  ? setDestination("011")
-                  : setDestination("016");
-                setOrigin(value.origin);
-              }}
-              changeValue={origin}
-            />
-            <InputSelect
-              width={45}
-              label="destino (ddd)"
-              name="destination"
-              values={codes}
-              valueChange={(value) => {
-                value.destination !== "011"
-                  ? setOrigin("011")
-                  : setOrigin("016");
-                setDestination(value.destination);
-              }}
-              changeValue={destination}
-            />
-          </GroupInputStyled>
-          <GroupInputStyled>
-            <InputSelect
-              width={45}
-              label="plano faleMais"
-              name="plan"
-              values={plans}
-              valueChange={(value) => {
-                setPlan(value.plan);
-              }}
-            />
-            <Input
-              width={45}
-              label="minutos falados"
-              name="callTime"
-              onChange={(value) => {
-                setCallTime(value.callTime);
-              }}
-              mask="999999999999"
-            />
-          </GroupInputStyled>
-        </CalculateStyled>
-        <GroupResultStyled>
-          <ResultStyled>
-            <ResultLabelStyled>com plano:</ResultLabelStyled>
-            <ResultLabelStyled>
-              {withPlan === 0
-                ? "gratuito"
-                : withPlan.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-            </ResultLabelStyled>
-          </ResultStyled>
-          <ResultStyled>
-            <ResultLabelStyled>sem plano:</ResultLabelStyled>
-            <ResultLabelStyled>
-              {withoutPlan.toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </ResultLabelStyled>
-          </ResultStyled>
-          <ResultStyled>
-            <ResultLabelStyled>custo-benefício:</ResultLabelStyled>
-            <ResultLabelStyled
-              color={
-                profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
-              }
-            >
-              {profit.toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </ResultLabelStyled>
-          </ResultStyled>
-        </GroupResultStyled>
-        <InfoStyled>
-          <label>consulte as tarifas fixas por minuto clicando no ícone</label>
-          <MdInfo
-            onClick={() => setOpenModal(true)}
-            style={{ fontSize: 25, cursor: "pointer" }}
+    <>
+      <Loading show={loading} />
+      <HeaderStyled backPage />
+      <ContainerStyled>
+        <Modal
+          visibility={openModal}
+          modalHandler={(status) => setOpenModal(status)}
+          data={data}
+        />
+        <AnimationBoxStyled>
+          <Lottie
+            options={defaultOptions}
+            height="75%"
+            width="75%"
+            isStopped={false}
+            isPaused={false}
           />
-        </InfoStyled>
-      </MainStyled>
-    </ContainerStyled>
+        </AnimationBoxStyled>
+        <MainStyled>
+          <CalculateStyled>
+            <GroupInputStyled>
+              <InputSelect
+                width={45}
+                label="origem (ddd)"
+                name="origin"
+                values={codes}
+                valueChange={(value) => {
+                  value.origin !== "011"
+                    ? setDestination("011")
+                    : setDestination("016");
+                  setOrigin(value.origin);
+                }}
+                changeValue={origin}
+              />
+              <InputSelect
+                width={45}
+                label="destino (ddd)"
+                name="destination"
+                values={codes}
+                valueChange={(value) => {
+                  value.destination !== "011"
+                    ? setOrigin("011")
+                    : setOrigin("016");
+                  setDestination(value.destination);
+                }}
+                changeValue={destination}
+              />
+            </GroupInputStyled>
+            <GroupInputStyled>
+              <InputSelect
+                width={45}
+                label="plano faleMais"
+                name="plan"
+                values={plans}
+                valueChange={(value) => {
+                  setPlan(value.plan);
+                }}
+              />
+              <Input
+                width={45}
+                label="minutos falados"
+                name="callTime"
+                onChange={(value) => {
+                  setCallTime(value.callTime);
+                }}
+                mask="999999999999"
+              />
+            </GroupInputStyled>
+          </CalculateStyled>
+          <GroupResultStyled>
+            <ResultStyled>
+              <ResultLabelStyled>com plano:</ResultLabelStyled>
+              <ResultLabelStyled>
+                {withPlan === 0
+                  ? "gratuito"
+                  : withPlan.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+              </ResultLabelStyled>
+            </ResultStyled>
+            <ResultStyled>
+              <ResultLabelStyled>sem plano:</ResultLabelStyled>
+              <ResultLabelStyled>
+                {withoutPlan.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </ResultLabelStyled>
+            </ResultStyled>
+            <ResultStyled>
+              <ResultLabelStyled>custo-benefício:</ResultLabelStyled>
+              <ResultLabelStyled
+                color={
+                  profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
+                }
+              >
+                {profit.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </ResultLabelStyled>
+            </ResultStyled>
+          </GroupResultStyled>
+          <InfoStyled>
+            <label>
+              consulte as tarifas fixas por minuto clicando no ícone
+            </label>
+            <MdInfo
+              onClick={() => setOpenModal(true)}
+              style={{ fontSize: 25, cursor: "pointer" }}
+            />
+          </InfoStyled>
+        </MainStyled>
+      </ContainerStyled>
+    </>
   );
 }
 

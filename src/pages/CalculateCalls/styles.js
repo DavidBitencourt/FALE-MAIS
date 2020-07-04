@@ -5,28 +5,24 @@ export const ContainerStyled = styled.div`
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-export const HeaderStyled = styled.header`
-  margin-top: 48px;
+export const AnimationBoxStyled = styled.div`
+  width: 55%;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  font-size: 20px;
-  a {
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-  }
 `;
 
 export const MainStyled = styled.main`
   margin-top: 50px;
   background-color: #ffffff;
   display: flex;
-  width: 500px;
+  width: 40%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -36,9 +32,10 @@ export const MainStyled = styled.main`
   border-radius: 10px;
   box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.4);
 `;
+
 export const CalculateStyled = styled.div`
   width: 100%;
-  height: 40%;
+  height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;

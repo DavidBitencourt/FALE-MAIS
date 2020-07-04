@@ -10,8 +10,8 @@ function Loading({ show, backgroundColor }) {
     autoplay: true,
     animationData: loading,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
@@ -28,11 +28,11 @@ function Loading({ show, backgroundColor }) {
 }
 
 Loading.defaultProps = {
-  backgroundColor: 'white'
+  backgroundColor: "white",
 };
 Loading.propTypes = {
   show: PropTypes.bool.isRequired,
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
 };
 
 export default Loading;
