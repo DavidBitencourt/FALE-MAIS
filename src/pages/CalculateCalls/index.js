@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
 import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
+import RowResult from "../../components/RowResult";
 import data from "../../utils/data.json";
 import {
   AnimationBoxStyled,
@@ -16,8 +17,6 @@ import {
   GroupResultStyled,
   InfoStyled,
   MainStyled,
-  ResultLabelStyled,
-  ResultStyled,
 } from "./styles";
 
 function CalculateCalls() {
@@ -187,39 +186,19 @@ function CalculateCalls() {
             </GroupInputStyled>
           </CalculateStyled>
           <GroupResultStyled>
-            <ResultStyled>
-              <ResultLabelStyled>com plano:</ResultLabelStyled>
-              <ResultLabelStyled>
-                {withPlan === 0
-                  ? "gratuito"
-                  : withPlan.toLocaleString("pt-br", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-              </ResultLabelStyled>
-            </ResultStyled>
-            <ResultStyled>
-              <ResultLabelStyled>sem plano:</ResultLabelStyled>
-              <ResultLabelStyled>
-                {withoutPlan.toLocaleString("pt-br", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </ResultLabelStyled>
-            </ResultStyled>
-            <ResultStyled>
-              <ResultLabelStyled>custo-benefício:</ResultLabelStyled>
-              <ResultLabelStyled
-                color={
-                  profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
-                }
-              >
-                {profit.toLocaleString("pt-br", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </ResultLabelStyled>
-            </ResultStyled>
+            <RowResult
+              label="com plano"
+              value={withPlan === 0 ? "gratuito" : withPlan}
+              number={withPlan === 0 ? false : true}
+            />
+            <RowResult label="sem plano" value={withoutPlan} />
+            <RowResult
+              label="custo-benefício"
+              value={profit}
+              color={
+                profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
+              }
+            />
           </GroupResultStyled>
           <InfoStyled>
             <label>
