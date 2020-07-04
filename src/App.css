@@ -6,12 +6,7 @@
 }
 
 body {
-  background: rgb(33, 79, 124);
-  background: linear-gradient(
-    90deg,
-    rgba(33, 79, 124, 1) 0%,
-    rgba(102, 148, 193, 1) 86%
-  );
+  background: white;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -22,6 +17,8 @@ table,
 tr,
 td,
 th,
+a,
+span,
 button {
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
