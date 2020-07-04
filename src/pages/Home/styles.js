@@ -21,11 +21,19 @@ export const ActionBox = styled.div`
   align-self: center;
   flex-direction: column;
   justify-content: space-between;
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
 `;
 
 export const Title = styled.h1`
   color: black;
   font-size: 35px;
+  @media only screen and (max-width: 1500px) {
+    font-size: 30px;
+  }
 `;
 
 export const Button = styled.a`
@@ -35,7 +43,6 @@ export const Button = styled.a`
   border-radius: 7px;
   justify-content: center;
   align-items: center;
-  background: rgb(33, 79, 124);
   background: linear-gradient(
     90deg,
     rgba(33, 79, 124, 1) 0%,
@@ -46,11 +53,17 @@ export const Button = styled.a`
     color: white;
     font-size: 24px;
   }
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const ImageBox = styled.div`
   height: 100%;
   width: 100%;
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const Image = styled.img`

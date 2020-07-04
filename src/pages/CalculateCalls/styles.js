@@ -11,11 +11,14 @@ export const ContainerStyled = styled.div`
 `;
 
 export const AnimationBoxStyled = styled.div`
-  width: 55%;
+  width: 45%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const MainStyled = styled.main`
@@ -31,6 +34,9 @@ export const MainStyled = styled.main`
   align-items: center;
   border-radius: 10px;
   box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.4);
+  @media only screen and (max-width: 800px) {
+    width: 90%;
+  }
 `;
 
 export const CalculateStyled = styled.div`
