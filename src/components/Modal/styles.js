@@ -1,6 +1,7 @@
-// import { bounceIn } from "react-animations";
-import styled, { css } from "styled-components";
-// import px2vw from "../../utils/px2vw";
+import { bounceInDown } from "react-animations";
+import styled, { css, keyframes } from "styled-components";
+
+const bounceAnimation = keyframes`${bounceInDown}`;
 
 export const ContainerStyled = styled.div`
   width: 100%;
@@ -20,9 +21,10 @@ export const ContainerStyled = styled.div`
 `;
 
 export const CardBoxStyled = styled.div`
+  animation: 1s ${bounceAnimation};
   border-radius: 3%;
-  width: 600px;
-  height: 500px;
+  width: 45%;
+  height: 70%;
   z-index: 2;
   background: white;
 `;
@@ -32,7 +34,7 @@ export const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   height: 5%;
-  padding: 1%;
+  padding: 5%;
   margin: 1%;
 `;
 
@@ -77,6 +79,7 @@ export const TableStyled = styled.table`
 export const TableHeaderStyled = styled.th`
   text-align: center;
   border-bottom: 2px solid #000;
+  font-weight: bold;
 `;
 
 export const TableRowStyled = styled.tr`
@@ -84,9 +87,15 @@ export const TableRowStyled = styled.tr`
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   :nth-of-type(n + 2) {
     :hover {
-      transition: 0.5s;
-      background-color: rgba(33, 79, 124, 0.5);
+      transition: 0.3s;
+      background: linear-gradient(
+        90deg,
+        rgba(33, 79, 124, 1) 0%,
+        rgba(102, 148, 193, 1) 86%
+      );
+      color: white;
       cursor: pointer;
+      font-weight: bold;
     }
   }
 `;

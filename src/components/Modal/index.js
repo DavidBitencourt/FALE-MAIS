@@ -39,7 +39,7 @@ function Modal({ visibility, modalHandler, data }) {
           <Title>tabela de tarifas</Title>
           <MdClose
             onClick={() => closeModal()}
-            style={{ fontSize: 25, color: "#4f4f4f" }}
+            style={{ fontSize: 25, color: "#4f4f4f", cursor: "pointer" }}
           />
         </Header>
         <ModalContent>
@@ -48,7 +48,7 @@ function Modal({ visibility, modalHandler, data }) {
               <TableHeaderStyled>ddd (origem)</TableHeaderStyled>
               <TableHeaderStyled>ddd (destino)</TableHeaderStyled>
               <TableHeaderStyled>$/min</TableHeaderStyled>
-              <TableHeaderStyled>$/min com 10% ***</TableHeaderStyled>
+              <TableHeaderStyled>$/min excedente ***</TableHeaderStyled>
             </TableRowStyled>
             {data.map((item) => (
               <TableRowStyled key={item.id} className="row-table">
@@ -73,8 +73,8 @@ function Modal({ visibility, modalHandler, data }) {
             ))}
           </TableStyled>
           <InfoTextStyled>
-            *** Ao ultrapassar o limite de qualquer plano faleMais uma taxa de
-            10% do $/min será cobrado.
+            *** Ao exceder o limite de qualquer plano faleMais será cobrado o
+            valor da tarifa padrão mais uma taxa de 10% por minuto.
           </InfoTextStyled>
         </ModalContent>
       </CardBoxStyled>
