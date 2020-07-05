@@ -7,7 +7,7 @@ export const LoadingBoxStyled = styled.div`
   z-index: 99;
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #ffffff;
   transition: visibility 1s, opacity 0.5s linear;
   opacity: 1;
   ${({ show }) =>

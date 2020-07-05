@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ResultLabelStyled, ResultStyled } from "./styles";
 
-function RowResult({ label, value, color, number }) {
+function RowResult({ label, value, color, number, bold }) {
   return (
     <ResultStyled>
       <ResultLabelStyled>{label}:</ResultLabelStyled>
-      <ResultLabelStyled color={color}>
+      <ResultLabelStyled color={color} bold={bold}>
         {!number
           ? value
           : value.toLocaleString("pt-br", {
@@ -20,14 +20,16 @@ function RowResult({ label, value, color, number }) {
 
 RowResult.defaultProps = {
   label: "",
-  color: "#4f4f4f",
+  color: "#FFFFFF",
   number: true,
+  bold: false,
 };
 
 RowResult.propTypes = {
   label: PropTypes.string,
   color: PropTypes.string,
   number: PropTypes.bool,
+  bold: PropTypes.bool,
 };
 
 export default RowResult;

@@ -13,12 +13,13 @@ export const CssTextField = withStyles({
     marginBottom: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#FFFFFF",
     borderRadius: `6px`,
     fontWeight: "bold",
     fontSize: "2vh",
     border: `1px solid #828282`,
     paddingLeft: "2vh",
+    boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.3)",
 
     "& label + .MuiInput-formControl": {
       marginTop: "5px",
@@ -62,7 +63,7 @@ export const CssTextField = withStyles({
     },
     "& label.MuiInputLabel-shrink": {
       transform: "translate(0px, -27px) scale(1)",
-      color: "#4f4f4f",
+      color: "#ffffff",
     },
     "& legend": {
       width: "0px !important",

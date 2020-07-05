@@ -12,7 +12,6 @@ function InputSelect({
   name,
   values,
   disabled,
-  gridArea,
   valueChange,
   label,
   changeValue,
@@ -60,7 +59,6 @@ function InputSelect({
 
 InputSelect.defaultProps = {
   searchIcon: false,
-  gridArea: "",
   valueChange: () => {},
   changeValue: null,
   label: null,
@@ -70,7 +68,6 @@ InputSelect.defaultProps = {
 InputSelect.propTypes = {
   name: PropTypes.string.isRequired,
   values: PropTypes.shape([]).isRequired,
-  gridArea: PropTypes.string,
   valueChange: PropTypes.func,
   changeValue: PropTypes.string,
   label: PropTypes.string,

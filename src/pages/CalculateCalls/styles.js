@@ -23,7 +23,12 @@ export const AnimationBoxStyled = styled.div`
 
 export const MainStyled = styled.main`
   margin-top: 50px;
-  background-color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    rgba(33, 79, 124, 1) 0%,
+    rgba(102, 148, 193, 1) 86%
+  );
+  color: #ffffff;
   display: flex;
   width: 40%;
   height: 100%;
@@ -77,7 +82,7 @@ export const ResultStyled = styled.div`
 `;
 
 export const ResultLabelStyled = styled.label`
-  color: #4f4f4f;
+  color: #ffffff;
   font-size: 20px;
   color: ${({ color }) => color};
 `;
@@ -90,7 +95,7 @@ export const InfoStyled = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #4f4f4f;
+  color: #ffffff;
   font-size: 22px;
   justify-content: flex-start;
   line-height: 30px;

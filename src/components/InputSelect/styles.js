@@ -8,7 +8,7 @@ export const BoxSelectStyled = styled.div`
 `;
 
 export const SelectLabel = styled.label`
-  color: #4f4f4f;
+  color: #ffffff;
 `;
 
 export const CssSelect = withStyles({
@@ -23,13 +23,14 @@ export const CssSelect = withStyles({
 
 export const CssForm = withStyles({
   root: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#FFFFFF",
     borderRadius: "6px !important",
     marginTop: "5%",
     textAlign: "left",
     width: "100%",
     height: "45px",
     border: `1px solid #828282`,
+    boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.3)",
     "& .MuiSelect-select:focus": {
       backgroundColor: "#FAFAFA",
     },
@@ -50,8 +51,9 @@ export const CssForm = withStyles({
 export const CssMenuItem = withStyles({
   root: {
     fontSize: "1.5vh",
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#FFFFFF",
     color: "#4f4f4f",
+    fontSize: "2vh",
     "&.MuiListItem-gutters": {
       paddingLeft: "10px",
       paddingRight: "10px",

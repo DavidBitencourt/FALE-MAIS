@@ -50,7 +50,7 @@ export const Button = styled.a`
   );
   span {
     font-family: Arial;
-    color: white;
+    color: #ffffff;
     font-size: 24px;
   }
   @media only screen and (max-width: 500px) {

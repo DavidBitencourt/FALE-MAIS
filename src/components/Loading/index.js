@@ -29,7 +29,7 @@ function Loading({ show, backgroundColor }) {
 }
 
 Loading.defaultProps = {
-  backgroundColor: "white",
+  backgroundColor: "#ffffff",
 };
 Loading.propTypes = {
   show: PropTypes.bool.isRequired,

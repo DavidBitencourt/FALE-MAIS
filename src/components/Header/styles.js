@@ -12,7 +12,7 @@ export const HeaderStyled = styled.header`
     width: 15%;
     height: 50px;
     border-radius: 7px;
-    color: white;
+    color: #ffffff;
     font-weight: bold;
     text-decoration: none;
     display: flex;
@@ -27,6 +27,12 @@ export const HeaderStyled = styled.header`
     );
     @media only screen and (max-width: 800px) {
       width: 50%;
+      a {
+        font-size: 15px;
+      }
+    }
+    @media only screen and (min-width: 801px) and (max-width: 1200px) {
+      width: 20%;
     }
   }
 `;

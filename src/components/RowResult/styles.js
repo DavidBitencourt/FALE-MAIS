@@ -11,7 +11,8 @@ export const ResultStyled = styled.div`
 `;
 
 export const ResultLabelStyled = styled.label`
-  color: #4f4f4f;
+  color: #ffffff;
   font-size: 20px;
   color: ${({ color }) => color};
+  font-weight: ${({ bold }) => bold && "bold"};
 `;

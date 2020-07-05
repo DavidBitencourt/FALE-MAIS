@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.png";
+import Logo from "../../images/logo.png";
 import { HeaderStyled, Image } from "./styles";
 
 export function Header({ backPage }) {
@@ -15,5 +16,13 @@ export function Header({ backPage }) {
     </HeaderStyled>
   );
 }
+
+Header.defaultProps = {
+  backPage: false,
+};
+
+Header.propTypes = {
+  backPage: PropTypes.bool,
+};
 
 export default Header;

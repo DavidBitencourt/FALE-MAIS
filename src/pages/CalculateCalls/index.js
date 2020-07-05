@@ -62,7 +62,7 @@ function CalculateCalls() {
 
   setTimeout(() => {
     setLoading(false);
-  }, 2500);
+  }, 3000);
 
   function getValuePerMinute() {
     let { minute } = data.find(
@@ -139,7 +139,7 @@ function CalculateCalls() {
             <GroupInputStyled>
               <InputSelect
                 width={45}
-                label="origem (ddd)"
+                label="ddd (origem)"
                 name="origin"
                 values={codes}
                 valueChange={(value) => {
@@ -152,7 +152,7 @@ function CalculateCalls() {
               />
               <InputSelect
                 width={45}
-                label="destino (ddd)"
+                label="ddd (destino)"
                 name="destination"
                 values={codes}
                 valueChange={(value) => {
@@ -176,7 +176,7 @@ function CalculateCalls() {
               />
               <Input
                 width={45}
-                label="minutos falados"
+                label="tempo da ligação"
                 name="callTime"
                 onChange={(value) => {
                   setCallTime(value.callTime);
@@ -196,8 +196,9 @@ function CalculateCalls() {
               label="custo-benefício"
               value={profit}
               color={
-                profit === 0 ? "#4f4f4f" : profit < 0 ? "#FF0000" : "#00FF00"
+                profit === 0 ? "#FFFFFF" : profit < 0 ? "#FF0000" : "#00FF00"
               }
+              bold
             />
           </GroupResultStyled>
           <InfoStyled>

@@ -26,7 +26,7 @@ export const CardBoxStyled = styled.div`
   width: 45%;
   height: 70%;
   z-index: 2;
-  background: white;
+  background: #ffffff;
 `;
 
 export const Header = styled.div`
@@ -93,7 +93,7 @@ export const TableRowStyled = styled.tr`
         rgba(33, 79, 124, 1) 0%,
         rgba(102, 148, 193, 1) 86%
       );
-      color: white;
+      color: #ffffff;
       cursor: pointer;
       font-weight: bold;
     }
