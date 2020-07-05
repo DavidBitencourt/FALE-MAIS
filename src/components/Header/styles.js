@@ -18,7 +18,7 @@ export const HeaderStyled = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;
     visibility: ${({ backPage }) => !backPage && "hidden"};
     background: linear-gradient(
       90deg,
