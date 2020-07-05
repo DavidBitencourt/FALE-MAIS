@@ -18,10 +18,11 @@ function Loading({ show, backgroundColor }) {
     <LoadingBoxStyled backgroundColor={backgroundColor} show={show}>
       <Lottie
         options={defaultOptions}
-        height={100}
-        width={100}
+        height={120}
+        width={120}
         isStopped={false}
         isPaused={false}
+        style={{ borderRadius: 100 }}
       />
     </LoadingBoxStyled>
   );
