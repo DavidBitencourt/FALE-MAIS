@@ -1,5 +1,4 @@
 import styled from "styled-components";
-//import px2vw from "../../utils/px2vw";
 
 export const Container = styled.div`
   height: 700px;
@@ -26,6 +25,25 @@ export const ActionBox = styled.div`
     padding-left: 35px;
     padding-right: 35px;
   }
+  a {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      90deg,
+      rgba(33, 79, 124, 1) 0%,
+      rgba(102, 148, 193, 1) 86%
+    );
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 24px;
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -33,28 +51,6 @@ export const Title = styled.h1`
   font-size: 35px;
   @media only screen and (max-width: 1500px) {
     font-size: 30px;
-  }
-`;
-
-export const Button = styled.a`
-  width: 300px;
-  height: 50px;
-  display: flex;
-  border-radius: 7px;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    90deg,
-    rgba(33, 79, 124, 1) 0%,
-    rgba(102, 148, 193, 1) 86%
-  );
-  span {
-    font-family: Arial;
-    color: #ffffff;
-    font-size: 24px;
-  }
-  @media only screen and (max-width: 500px) {
-    width: 100%;
   }
 `;
 

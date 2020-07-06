@@ -1,29 +1,25 @@
 import { bounceInDown } from "react-animations";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const bounceAnimation = keyframes`${bounceInDown}`;
 
 export const ContainerStyled = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: ${({ visibility }) => (visibility === "true" ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
-  ${({ visibility }) =>
-    !visibility &&
-    css`
-      display: none;
-    `}
 `;
 
 export const CardBoxStyled = styled.div`
   animation: 1s ${bounceAnimation};
   border-radius: 3%;
-  width: 45%;
+  width: 90%;
+  max-width: 600px;
   height: 70%;
   z-index: 2;
   background: #ffffff;
@@ -41,7 +37,7 @@ export const Header = styled.div`
 export const Title = styled.h1`
   width: 100%;
   color: black;
-  font-size: 2.3vw;
+  font-size: 2.5vw;
   text-align: center;
   color: #4f4f4f;
 `;
@@ -74,6 +70,11 @@ export const TableStyled = styled.table`
   height: 70%;
   border-radius: 10px;
   border-collapse: collapse;
+`;
+
+export const TableBodyStyled = styled.tbody`
+  width: 100%;
+  height: 100%;
 `;
 
 export const TableHeaderStyled = styled.th`

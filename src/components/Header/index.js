@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-import Logo from "../../images/logo.png";
+import Logo from "../../assets/images/logo.png";
 import { HeaderStyled, Image } from "./styles";
 
 export function Header({ backPage }) {

@@ -16,7 +16,7 @@ function InputSelect({
   label,
   changeValue,
   width,
-  marginLabel,
+  maxLength,
 }) {
   const [state, setState] = useState({
     value: values[0].label,
@@ -45,7 +45,7 @@ function InputSelect({
           >
             {values.map((select) => {
               return (
-                <CssMenuItem key={name} value={select.label}>
+                <CssMenuItem key={select.label} value={select.label}>
                   {select.label}
                 </CssMenuItem>
               );
@@ -62,16 +62,14 @@ InputSelect.defaultProps = {
   valueChange: () => {},
   changeValue: null,
   label: null,
-  marginLabel: null,
 };
 
 InputSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  values: PropTypes.shape([]).isRequired,
+  values: PropTypes.array.isRequired,
   valueChange: PropTypes.func,
   changeValue: PropTypes.string,
   label: PropTypes.string,
-  marginLabel: PropTypes.number,
 };
 
 export default InputSelect;

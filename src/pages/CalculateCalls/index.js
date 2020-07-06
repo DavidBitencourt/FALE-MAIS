@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MdInfo } from "react-icons/md";
-import Lottie from "react-lottie";
-import phoneGirl from "../../assets/phoneGirl.json";
+import phoneGirl from "../../assets/animations/phoneGirl.json";
+import AnimationLottie from "../../components/AnimationLottie";
 import HeaderStyled from "../../components/Header";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
 import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
 import RowResult from "../../components/RowResult";
+import Calculate from "../../Controllers/Calculate";
+import codes from "../../utils/codes.json";
 import data from "../../utils/data.json";
+import plans from "../../utils/plans.json";
 import {
   AnimationBoxStyled,
   CalculateStyled,
@@ -20,37 +23,7 @@ import {
 } from "./styles";
 
 function CalculateCalls() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: phoneGirl,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   const [loading, setLoading] = useState(true);
-  const plans = [
-    {
-      label: "FaleMais 30",
-      value: 30,
-    },
-    {
-      label: "FaleMais 60",
-      value: 60,
-    },
-    {
-      label: "FaleMais 120",
-      value: 120,
-    },
-  ];
-  const codes = [
-    { label: "011" },
-    { label: "016" },
-    { label: "017" },
-    { label: "018" },
-  ];
-
   const [origin, setOrigin] = useState(codes[0].label);
   const [destination, setDestination] = useState(codes[1].label);
   const [plan, setPlan] = useState(plans[0].label);
@@ -59,52 +32,22 @@ function CalculateCalls() {
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const calculate = new Calculate(origin, destination, plan);
 
   setTimeout(() => {
     setLoading(false);
   }, 3000);
 
-  function getValuePerMinute() {
-    let { minute } = data.find(
-      (item) => item.origin === origin && item.destination === destination
-    );
-    return minute;
-  }
-
-  function calculateRate(minute) {
-    let minuteRate = (minute * 10) / 100 + minute;
-    return minuteRate;
-  }
-
-  function getLimitPlan() {
-    let valueCallTime = plans.find((item) => item.label === plan);
-    return valueCallTime;
-  }
-
-  function calculateWithPlan(callTime, valueCallTime, minuteRate) {
-    return callTime > valueCallTime.value
-      ? (callTime - valueCallTime.value) * minuteRate
-      : 0;
-  }
-
-  function calculateWithoutPlan(callTime, minute) {
-    return callTime * minute;
-  }
-
-  function calculateProfit(withoutPlan, withPlan) {
-    return withoutPlan - withPlan;
-  }
-
   useEffect(() => {
     if (origin && destination && plan && callTime) {
-      let minute = getValuePerMinute();
+      let { minute } = calculate.getValuePerMinute(origin, destination);
+      let minuteRate = calculate.calculateRate(minute);
+      let valueCallTime = calculate.getLimitPlan(plan);
 
-      let minuteRate = calculateRate(minute);
-
-      let valueCallTime = getLimitPlan();
-
-      setWithPlan(() => calculateWithPlan(callTime, valueCallTime, minuteRate));
-      setWithoutPlan(() => calculateWithoutPlan(callTime, minute));
+      setWithPlan(() =>
+        calculate.calculateWithPlan(callTime, valueCallTime, minuteRate)
+      );
+      setWithoutPlan(() => calculate.calculateWithoutPlan(callTime, minute));
     } else {
       setWithPlan(0);
       setWithoutPlan(0);
@@ -112,27 +55,27 @@ function CalculateCalls() {
   }, [origin, destination, plan, callTime, plans]);
 
   useEffect(() => {
-    setProfit(() => calculateProfit(withoutPlan, withPlan));
+    setProfit(() => calculate.calculateProfit(withoutPlan, withPlan));
   }, [withPlan, withoutPlan]);
 
   return (
     <>
       <Loading show={loading} />
+      <Modal
+        visibility={openModal}
+        modalHandler={setOpenModal}
+        data={data}
+        labelHeader={[
+          "ddd (origem)",
+          "ddd (destino)",
+          "$/min",
+          "$/min excedente ***",
+        ]}
+      />
       <HeaderStyled backPage />
       <ContainerStyled>
-        <Modal
-          visibility={openModal}
-          modalHandler={(status) => setOpenModal(status)}
-          data={data}
-        />
         <AnimationBoxStyled>
-          <Lottie
-            options={defaultOptions}
-            height="75%"
-            width="75%"
-            isStopped={false}
-            isPaused={false}
-          />
+          <AnimationLottie animationData={phoneGirl} height="75%" width="75%" />
         </AnimationBoxStyled>
         <MainStyled>
           <CalculateStyled>
@@ -176,12 +119,13 @@ function CalculateCalls() {
               />
               <Input
                 width={45}
-                label="tempo da ligação"
+                label="tempo da ligação (min.)"
                 name="callTime"
                 onChange={(value) => {
                   setCallTime(value.callTime);
                 }}
-                mask="999999999999"
+                value={callTime}
+                maxLength={9}
               />
             </GroupInputStyled>
           </CalculateStyled>
@@ -202,12 +146,13 @@ function CalculateCalls() {
             />
           </GroupResultStyled>
           <InfoStyled>
-            <label>
+            <label data-testid="info-label">
               consulte as tarifas fixas por minuto clicando no ícone
             </label>
             <MdInfo
               onClick={() => setOpenModal(true)}
               style={{ fontSize: 25, cursor: "pointer" }}
+              data-testid="open-modal"
             />
           </InfoStyled>
         </MainStyled>

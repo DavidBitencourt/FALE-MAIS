@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdClose } from "react-icons/md";
 import {
   CardBoxStyled,
@@ -8,69 +8,60 @@ import {
   InfoTextStyled,
   ModalContent,
   OverflowStyled,
+  TableBodyStyled,
   TableColumnStyled,
   TableHeaderStyled,
   TableRowStyled,
   TableStyled,
-  Title,
+  Title
 } from "./styles";
 
-function Modal({ visibility, modalHandler, data }) {
-  const [show, setShow] = useState(visibility);
-
-  useEffect(() => {
-    setShow(visibility);
-  }, [visibility]);
-
-  const closeModal = () => {
-    setShow(false);
-    modalHandler(false);
-  };
-
+function Modal({ visibility, modalHandler, data, labelHeader }) {
   return (
-    <ContainerStyled visibility={show}>
+    <ContainerStyled visibility={visibility.toString()}>
       <OverflowStyled
         onClick={() => {
-          closeModal();
+          modalHandler(false);
         }}
       />
       <CardBoxStyled>
         <Header>
           <Title>tabela de tarifas</Title>
           <MdClose
-            onClick={() => closeModal()}
+            onClick={() => modalHandler(false)}
             style={{ fontSize: 25, color: "#4f4f4f", cursor: "pointer" }}
           />
         </Header>
         <ModalContent>
           <TableStyled>
-            <TableRowStyled>
-              <TableHeaderStyled>ddd (origem)</TableHeaderStyled>
-              <TableHeaderStyled>ddd (destino)</TableHeaderStyled>
-              <TableHeaderStyled>$/min</TableHeaderStyled>
-              <TableHeaderStyled>$/min excedente ***</TableHeaderStyled>
-            </TableRowStyled>
-            {data.map((item) => (
-              <TableRowStyled key={item.id} className="row-table">
-                <TableColumnStyled>{item.origin}</TableColumnStyled>
-                <TableColumnStyled>{item.destination}</TableColumnStyled>
-                <TableColumnStyled>
-                  {item.minute.toLocaleString("pt-br", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                </TableColumnStyled>
-                <TableColumnStyled>
-                  {((item.minute * 10) / 100 + item.minute).toLocaleString(
-                    "pt-br",
-                    {
+            <TableBodyStyled>
+              <TableRowStyled>
+                {labelHeader.map((label, index) => (
+                  <TableHeaderStyled key={index}>{label}</TableHeaderStyled>
+                ))}
+              </TableRowStyled>
+              {data.map((item) => (
+                <TableRowStyled key={item.id} className="row-table">
+                  <TableColumnStyled>{item.origin}</TableColumnStyled>
+                  <TableColumnStyled>{item.destination}</TableColumnStyled>
+                  <TableColumnStyled>
+                    {item.minute.toLocaleString("pt-br", {
                       style: "currency",
                       currency: "BRL",
-                    }
-                  )}
-                </TableColumnStyled>
-              </TableRowStyled>
-            ))}
+                    })}
+                  </TableColumnStyled>
+                  <TableColumnStyled>
+                    {((item.minute * 10) / 100 + item.minute).toLocaleString(
+                      "pt-br",
+                      {
+                        style: "currency",
+                        currency: "BRL",
+                      }
+                    )}
+                  </TableColumnStyled>
+                </TableRowStyled>
+              ))}
+            </TableBodyStyled>
           </TableStyled>
           <InfoTextStyled>
             *** Ao exceder o limite de qualquer plano faleMais será cobrado o
@@ -81,6 +72,11 @@ function Modal({ visibility, modalHandler, data }) {
     </ContainerStyled>
   );
 }
+
+Modal.defaultProps = {
+  visibility: false,
+  modalHandler: false,
+};
 
 Modal.propTypes = {
   visibility: PropTypes.bool.isRequired,

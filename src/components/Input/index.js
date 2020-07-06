@@ -9,11 +9,11 @@ export function Input({
   height,
   value,
   onChange,
-  errorMessage,
   disabled,
   mask,
   placeholder,
   maskPlaceholder,
+  maxLength,
 }) {
   const handleChange = (event) => {
     onChange({
@@ -32,10 +32,13 @@ export function Input({
               label={label}
               name={name}
               margin="normal"
-              errorMessage={errorMessage}
               disabled={disabled}
               value={value}
               onChange={handleChange}
+              inputProps={{
+                maxLength,
+              }}
+              key={name}
             />
           </BoxInputStyled>
         )}
@@ -52,20 +55,20 @@ Input.defaultProps = {
   maskPlaceholder: "",
   mask: null,
   valueSent: false,
+  maxLength: null,
 };
 
 Input.propTypes = {
   placeholder: PropTypes.string,
   width: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   height: PropTypes.string,
   value: PropTypes.string,
-  errorMessage: PropTypes.string,
   onChange: PropTypes.func,
   mask: PropTypes.string,
   maskPlaceholder: PropTypes.string,
+  maxLength: PropTypes.number,
 };
 
 export default Input;

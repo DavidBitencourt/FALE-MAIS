@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Typist from "react-typist";
+import Phone from "../../assets/images/phone.png";
 import HeaderStyled from "../../components/Header";
 import Loading from "../../components/Loading";
-import Phone from "../../images/phone.png";
 import {
   ActionBox,
-  Button,
   Container,
   ContentContainer,
   Image,
   ImageBox,
-  Title
+  Title,
 } from "./styles";
 
 function Home() {
@@ -41,11 +40,7 @@ function Home() {
                 <Title>Veja seu plano ideal!</Title>
               </Typist>
             )}
-            <Link to="/calculate">
-              <Button data-testid="button">
-                <span>Conferir</span>
-              </Button>
-            </Link>
+            <Link to="/calculate">Conferir</Link>
           </ActionBox>
           <ImageBox>
             <Image src={Phone} />

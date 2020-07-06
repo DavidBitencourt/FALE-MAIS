@@ -1,5 +1,4 @@
 import styled from "styled-components";
-//import px2vw from "../../utils/px2vw";
 
 export const ContainerStyled = styled.div`
   width: 100%;
@@ -30,7 +29,7 @@ export const MainStyled = styled.main`
   );
   color: #ffffff;
   display: flex;
-  width: 40%;
+  width: 45%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
