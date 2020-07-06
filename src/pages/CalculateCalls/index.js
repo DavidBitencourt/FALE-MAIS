@@ -8,7 +8,6 @@ import InputSelect from "../../components/InputSelect";
 import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
 import RowResult from "../../components/RowResult";
-import calculateController from "../../controllers/calculate.js";
 import codes from "../../utils/codes.json";
 import data from "../../utils/data.json";
 import plans from "../../utils/plans.json";
@@ -32,22 +31,52 @@ function CalculateCalls() {
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const calculate = new calculateController();
 
   setTimeout(() => {
     setLoading(false);
   }, 3000);
 
+  function getValuePerMinute() {
+    let { minute } = data.find(
+      (item) => item.origin === origin && item.destination === destination
+    );
+    return minute;
+  }
+
+  function calculateRate(minute) {
+    let minuteRate = (minute * 10) / 100 + minute;
+    return minuteRate;
+  }
+
+  function getLimitPlan() {
+    let valueCallTime = plans.find((item) => item.label === plan);
+    return valueCallTime;
+  }
+
+  function calculateWithPlan(callTime, valueCallTime, minuteRate) {
+    return callTime > valueCallTime.value
+      ? (callTime - valueCallTime.value) * minuteRate
+      : 0;
+  }
+
+  function calculateWithoutPlan(callTime, minute) {
+    return callTime * minute;
+  }
+
+  function calculateProfit(withoutPlan, withPlan) {
+    return withoutPlan - withPlan;
+  }
+
   useEffect(() => {
     if (origin && destination && plan && callTime) {
-      let { minute } = calculate.getValuePerMinute(origin, destination);
-      let minuteRate = calculate.calculateRate(minute);
-      let valueCallTime = calculate.getLimitPlan(plan);
+      let minute = getValuePerMinute();
 
-      setWithPlan(() =>
-        calculate.calculateWithPlan(callTime, valueCallTime, minuteRate)
-      );
-      setWithoutPlan(() => calculate.calculateWithoutPlan(callTime, minute));
+      let minuteRate = calculateRate(minute);
+
+      let valueCallTime = getLimitPlan();
+
+      setWithPlan(() => calculateWithPlan(callTime, valueCallTime, minuteRate));
+      setWithoutPlan(() => calculateWithoutPlan(callTime, minute));
     } else {
       setWithPlan(0);
       setWithoutPlan(0);
@@ -55,7 +84,7 @@ function CalculateCalls() {
   }, [origin, destination, plan, callTime, plans]);
 
   useEffect(() => {
-    setProfit(() => calculate.calculateProfit(withoutPlan, withPlan));
+    setProfit(() => calculateProfit(withoutPlan, withPlan));
   }, [withPlan, withoutPlan]);
 
   return (
