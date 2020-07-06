@@ -1,7 +1,7 @@
 import data from "../utils/data.json";
 import plans from "../utils/plans.json";
 
-export default class Calculate {
+export default class calculate {
   constructor() {
     this.minute;
   }

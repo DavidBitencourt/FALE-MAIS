@@ -8,7 +8,7 @@ import InputSelect from "../../components/InputSelect";
 import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
 import RowResult from "../../components/RowResult";
-import Calculate from "../../controllers/calculate.js";
+import calculateController from "../../controllers/calculate.js";
 import codes from "../../utils/codes.json";
 import data from "../../utils/data.json";
 import plans from "../../utils/plans.json";
@@ -32,7 +32,7 @@ function CalculateCalls() {
   const [withoutPlan, setWithoutPlan] = useState(0);
   const [profit, setProfit] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const calculate = new Calculate();
+  const calculate = new calculateController();
 
   setTimeout(() => {
     setLoading(false);
