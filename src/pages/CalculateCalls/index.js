@@ -8,7 +8,7 @@ import InputSelect from "../../components/InputSelect";
 import Loading from "../../components/Loading";
 import Modal from "../../components/Modal";
 import RowResult from "../../components/RowResult";
-import Calculate from "../../controllers/Calculate.js";
+import Calculate from "../../controllers/calculate.js";
 import codes from "../../utils/codes.json";
 import data from "../../utils/data.json";
 import plans from "../../utils/plans.json";
