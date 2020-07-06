@@ -2,10 +2,7 @@ import data from "../utils/data.json";
 import plans from "../utils/plans.json";
 
 export default class Calculate {
-  constructor(origin, destination, plan) {
-    this.origin = origin;
-    this.destination = destination;
-    this.plan = plan;
+  constructor() {
     this.minute;
   }
 
