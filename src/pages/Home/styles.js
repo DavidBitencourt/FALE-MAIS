@@ -29,13 +29,13 @@ export const ActionBox = styled.div`
     width: 300px;
     height: 50px;
     display: flex;
-    border-radius: 7px;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
     background: linear-gradient(
-      90deg,
-      rgba(33, 79, 124, 1) 0%,
-      rgba(102, 148, 193, 1) 86%
+      135deg,
+      rgba(69, 40, 123, 1) 0%,
+      rgba(12, 12, 12, 1) 100%
     );
     font-family: Arial;
     color: #ffffff;
@@ -48,6 +48,13 @@ export const ActionBox = styled.div`
 
 export const Title = styled.h1`
   color: black;
+  background: -webkit-linear-gradient(
+    60deg,
+    rgba(69, 40, 123, 1) 0%,
+    rgba(12, 12, 12, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 35px;
   @media only screen and (max-width: 1500px) {
     font-size: 30px;

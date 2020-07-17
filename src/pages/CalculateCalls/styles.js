@@ -19,13 +19,15 @@ export const AnimationBoxStyled = styled.div`
     display: none;
   }
 `;
-
+// #FFFFFF
+// #0C0C0C
+// #EF6330
 export const MainStyled = styled.main`
   margin-top: 50px;
   background: linear-gradient(
-    90deg,
-    rgba(33, 79, 124, 1) 0%,
-    rgba(102, 148, 193, 1) 86%
+    135deg,
+    rgba(69, 40, 123, 1) 0%,
+    rgba(12, 12, 12, 1) 100%
   );
   color: #ffffff;
   display: flex;

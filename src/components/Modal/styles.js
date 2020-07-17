@@ -90,9 +90,9 @@ export const TableRowStyled = styled.tr`
     :hover {
       transition: 0.3s;
       background: linear-gradient(
-        90deg,
-        rgba(33, 79, 124, 1) 0%,
-        rgba(102, 148, 193, 1) 86%
+        135deg,
+        rgba(69, 40, 123, 1) 0%,
+        rgba(12, 12, 12, 1) 100%
       );
       color: #ffffff;
       cursor: pointer;

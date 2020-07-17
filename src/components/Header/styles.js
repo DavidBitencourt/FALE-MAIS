@@ -11,7 +11,7 @@ export const HeaderStyled = styled.header`
   a {
     width: 15%;
     height: 50px;
-    border-radius: 7px;
+    border-radius: 10px;
     color: #ffffff;
     font-weight: bold;
     text-decoration: none;
@@ -21,9 +21,9 @@ export const HeaderStyled = styled.header`
     font-size: 18px;
     visibility: ${({ backPage }) => !backPage && "hidden"};
     background: linear-gradient(
-      90deg,
-      rgba(33, 79, 124, 1) 0%,
-      rgba(102, 148, 193, 1) 86%
+      135deg,
+      rgba(69, 40, 123, 1) 0%,
+      rgba(12, 12, 12, 1) 100%
     );
     @media only screen and (max-width: 800px) {
       width: 50%;

@@ -8,8 +8,8 @@ function Loading({ show, backgroundColor }) {
   return (
     <LoadingBoxStyled backgroundColor={backgroundColor} show={show}>
       <AnimationLottie
-        height={120}
-        width={120}
+        height={100}
+        width={100}
         animationData={loading}
         borderRadius={100}
       />
