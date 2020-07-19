@@ -19,7 +19,7 @@ import {
   GroupInputStyled,
   GroupResultStyled,
   InfoStyled,
-  MainStyled
+  MainStyled,
 } from "./styles";
 
 function CalculateCalls() {
@@ -38,17 +38,15 @@ function CalculateCalls() {
     setLoading(false);
   }, 3000);
 
-  const calculateCallsPerMinute = async () => {
+  const calculateCallsPerMinute = () => {
     let { minute } = calculateFile.getValuePerMinute(origin, destination);
     let minuteRate = calculateFile.calculateRate(minute);
     let valueCallTime = calculateFile.getLimitPlan(plan);
 
-    await setWithPlan(() =>
+    setWithPlan(() =>
       calculateFile.calculateWithPlan(callTime, valueCallTime, minuteRate)
     );
-    await setWithoutPlan(() =>
-      calculateFile.calculateWithoutPlan(callTime, minute)
-    );
+    setWithoutPlan(() => calculateFile.calculateWithoutPlan(callTime, minute));
   };
 
   useEffect(() => {
@@ -58,7 +56,7 @@ function CalculateCalls() {
       setWithPlan(0);
       setWithoutPlan(0);
     }
-  }, [origin, destination, plan, callTime, plans]);
+  }, [origin, destination, plan, callTime]);
 
   useEffect(() => {
     setProfit(() => calculateFile.calculateProfit(withoutPlan, withPlan));

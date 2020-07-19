@@ -47,7 +47,6 @@ export const ActionBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: black;
   background: -webkit-linear-gradient(
     60deg,
     rgba(69, 40, 123, 1) 0%,

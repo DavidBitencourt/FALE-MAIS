@@ -11,7 +11,6 @@ test("check info text", () => {
     <BrowserRouter>
       <Switch>
         <CalculateCalls />
-        ``
       </Switch>
     </BrowserRouter>
   );

@@ -50,7 +50,6 @@ export const CssForm = withStyles({
 
 export const CssMenuItem = withStyles({
   root: {
-    fontSize: "1.5vh",
     backgroundColor: "#FFFFFF",
     color: "#4f4f4f",
     fontSize: "2vh",

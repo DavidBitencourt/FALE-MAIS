@@ -14,6 +14,7 @@ test("back to home", () => {
       </Switch>
     </BrowserRouter>
   );
+  // toBeEmptyDOMElement() in buttom
   expect(screen.getByText("voltar para a home").closest("a")).toHaveAttribute(
     "href",
     "/"
