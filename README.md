@@ -22,5 +22,5 @@ react-lottie -
 react-typist
 ##  Testes:
 @testing-library
- 
+@testing-library/jest-dom 
 
